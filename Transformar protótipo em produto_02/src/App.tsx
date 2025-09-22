@@ -1091,6 +1091,18 @@ export default function App() {
     });
   };
 
+  // Get courses filtered by category globally (across all trilhas)
+  const getCoursesFilteredByCategory = () => {
+    if (activeCategorias.length === 0) {
+      return [];
+    }
+
+    return courseData.filter((course) => {
+      const effectiveCategory = getEffectiveCategory(course);
+      return activeCategorias.includes(effectiveCategory as ActiveCategoria);
+    });
+  };
+
   // Define course distribution by trilha (based on content theme, not just category)
   const metaProducaoCourses = getFilteredCoursesByTrilha(
     courseData.filter(
@@ -1120,6 +1132,24 @@ export default function App() {
         c.title === "Customizando a Persona do Seu Assistente",
     ),
   );
+
+  // Get courses filtered globally by category
+  const globalCategoryFilteredCourses = getCoursesFilteredByCategory();
+
+  // Helper function to get category display names
+  const getCategoryDisplayNames = (categorias: ActiveCategoria[]): string => {
+    const categoryMap: { [key: string]: string } = {
+      "planejamento-metas": "Planejamento e Metas",
+      "gestao-controle": "Gestão e Controle",
+      "ferramentas-digitais": "Uso de Ferramentas Digitais",
+      "operacao-assistente": "Operação com Assistente IA",
+      "personalizacao-customizacao": "Personalização e Customização",
+    };
+
+    return categorias
+      .map((cat) => categoryMap[cat] || cat)
+      .join(", ");
+  };
 
   return (
     <div className="bg-[#1c1c21] min-h-screen w-full" data-name>
@@ -1257,8 +1287,42 @@ export default function App() {
                   </div>
                 )}
 
-                {/* Trilha Content - Show by trilha with category filters applied */}
-                {!searchTerm && (
+                {/* Category Filter Results - Show when categories are selected and no search term */}
+                {!searchTerm && activeCategorias.length > 0 && globalCategoryFilteredCourses.length > 0 && (
+                  <div className="flex flex-col gap-5 items-start justify-start relative w-full">
+                    <div className="font-['Inter:Medium',_sans-serif] font-medium leading-[0] not-italic relative shrink-0 text-[24px] text-white w-full">
+                      <p className="leading-[normal]">
+                        Cursos da categoria: {getCategoryDisplayNames(activeCategorias)}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 w-full">
+                      {globalCategoryFilteredCourses.map((course) => (
+                        <Card
+                          key={course.id}
+                          course={course}
+                          onClick={() => handleCourseClick(course)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* No Category Filter Results */}
+                {!searchTerm && activeCategorias.length > 0 && globalCategoryFilteredCourses.length === 0 && (
+                  <div className="flex items-center justify-center relative w-full h-64">
+                    <div className="text-center">
+                      <p className="text-white text-xl mb-2">
+                        Nenhum curso encontrado
+                      </p>
+                      <p className="text-neutral-400">
+                        Nenhum curso encontrado para as categorias selecionadas
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Trilha Content - Show by trilha only when no categories are selected */}
+                {!searchTerm && activeCategorias.length === 0 && (
                   <>
                     {/* Da Meta ao Plano de Produção Section */}
                     {activeTrilha === "meta-producao" && (
