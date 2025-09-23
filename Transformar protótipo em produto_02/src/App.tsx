@@ -209,7 +209,7 @@ function Dashboard() {
 
 function Frame1171277871() {
   return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-20">
+    <div className="content-stretch flex items-center justify-between relative shrink-0 w-20 hidden">
       <UserIconContainer />
       <Dashboard />
     </div>
