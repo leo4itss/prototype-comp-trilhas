@@ -711,7 +711,7 @@ export default function App() {
         (window as any).userGuiding
       ) {
         try {
-          (window as any).userGuiding.previewGuide(152142);
+          (window as any).userGuiding.previewGuide(152669);
           console.log(
             "UserGuiding guide triggered via DOM event listener for card-6",
           );
@@ -1033,7 +1033,7 @@ export default function App() {
     // Card-6: Como Acessar o Assistente
     if (course.title === "Como Acessar o Assistente" || course.id === "6") {
       console.log("🎯 Card-6 clicked! Course:", course.title, "ID:", course.id);
-      triggerUserGuiding(152142, "Card-6");
+      triggerUserGuiding(152669, "Card-6");
     }
 
     // Card-7: Aprendendo a Usar Seu Assistente
