@@ -56,7 +56,7 @@ This is a React + TypeScript + Vite application originally converted from a Figm
 ### UserGuiding Integration
 
 - UserGuiding analytics and user onboarding script is integrated in the HTML head
-- Project ID: `FDH106677CLKID`
+- Project ID: `4SZ106960EL0ID`
 - The script loads asynchronously and provides user guidance functionality
 - Available methods: `previewGuide`, `finishPreview`, `track`, `identify`, `hideChecklist`, `launchChecklist`
 - Access the UserGuiding object via `window.userGuiding` in the browser console
