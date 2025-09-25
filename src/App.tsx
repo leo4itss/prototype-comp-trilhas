@@ -733,7 +733,7 @@ export default function App() {
         (window as any).userGuiding
       ) {
         try {
-          (window as any).userGuiding.previewGuide(152150);
+          (window as any).userGuiding.previewGuide(152716);
           console.log(
             "UserGuiding guide triggered via DOM event listener for card-7",
           );
@@ -1039,7 +1039,7 @@ export default function App() {
     // Card-7: Aprendendo a Usar Seu Assistente
     if (course.title === "Aprendendo a Usar Seu Assistente" || course.id === "7") {
       console.log("🎯 Card-7 clicked! Course:", course.title, "ID:", course.id);
-      triggerUserGuiding(152150, "Card-7");
+      triggerUserGuiding(152716, "Card-7");
     }
 
     // Card-8: Customização de Restrições no Assistente
