@@ -777,7 +777,7 @@ export default function App() {
         (window as any).userGuiding
       ) {
         try {
-          (window as any).userGuiding.previewGuide(152030);
+          (window as any).userGuiding.previewGuide(152720);
           console.log(
             "UserGuiding guide triggered via DOM event listener for card-9",
           );
@@ -1051,7 +1051,7 @@ export default function App() {
     // Card-9: Customizando a Persona do Seu Assistente
     if (course.title === "Customizando a Persona do Seu Assistente" || course.id === "9") {
       console.log("🎯 Card-9 clicked! Course:", course.title, "ID:", course.id);
-      triggerUserGuiding(152030, "Card-9");
+      triggerUserGuiding(152720, "Card-9");
     }
 
     // Log course opening
